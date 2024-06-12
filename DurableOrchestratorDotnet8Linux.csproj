@@ -17,6 +17,7 @@
     <PackageReference Include="Microsoft.Azure.Functions.Worker.ApplicationInsights" Version="1.2.0" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.DurableTask" Version="2.13.4" />
     <PackageReference Include="Microsoft.DurableTask.Client" Version="1.2.4" />
+    <PackageReference Include="System.Data.Odbc" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

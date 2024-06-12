@@ -3,6 +3,10 @@ using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.DurableTask;
 using Microsoft.DurableTask.Client;
 using Microsoft.Extensions.Logging;
+using System.Data;
+using System.Data.Odbc;
+using System.Runtime.InteropServices;
+using System.IO;
 
 namespace DurableOrchestratorDotnet8Linux
 {
@@ -13,15 +17,13 @@ namespace DurableOrchestratorDotnet8Linux
             [OrchestrationTrigger] TaskOrchestrationContext context)
         {
             ILogger logger = context.CreateReplaySafeLogger(nameof(Orchestrator));
-            logger.LogInformation("Saying hello.");
+            logger.LogInformation("Invoking activity function.");
             var outputs = new List<string>();
-
-            // Replace name and input with values relevant for your Durable Functions Activity
-            outputs.Add(await context.CallActivityAsync<string>(nameof(SayHello), "Tokyo"));
-            
-
-            // returns ["Hello Tokyo!", "Hello Seattle!", "Hello London!"]
+            outputs.Add(await context.CallActivityAsync<string>(nameof(ActivityFunction), "Databricks"));
+        
             return outputs;
         }
+
+        
     }
 }
